@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: ai_project
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  flask_app:
+    build: .
+    container_name: flask_api
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:yourpassword@postgres:5432/ai_project
+    ports:
+      - "5000:5000"
+
+volumes:
+  postgres_data:
