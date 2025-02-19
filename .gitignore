@@ -1,1 +1,24 @@
-*.env 
+# Ignore the virtual environment
+env/
+venv/
+myenv/
+
+# Ignore the data folder
+data/
+raw_data/
+output/
+
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore other temporary files
+*.log
+*.tmp
+*.env
