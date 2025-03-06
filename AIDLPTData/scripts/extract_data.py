@@ -2,7 +2,7 @@ import os
 import subprocess
 
 # Define OPUS tools directory (where opus_get is located)
-opus_dir = r"D:\Adrian\AIDLPTData\myenv\Scripts"
+opus_dir = r"D:\Adrian\AIDLPTData\AIDLPTData\myenv\Scripts"
 
 # Define download directory
 download_dir = os.path.abspath("data/raw_opus")
@@ -10,9 +10,9 @@ os.makedirs(download_dir, exist_ok=True)  # Ensure the folder exists
 
 # OPUS datasets to download
 datasets = [
-    ("en", "fr", "OpenSubtitles"),
-    ("en", "es", "Europarl"),
-    ("en", "zh", "NewsCommentary")
+    ("en", "tg", "Tatoeba"),      # English-Tajik
+    ("en", "ms", "QED")     # English-Malay
+    ("en", "ta", "GNOME")         # English-Tamil
 ]
 
 # Loop through datasets and download them
