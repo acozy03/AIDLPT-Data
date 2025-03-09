@@ -11,7 +11,7 @@ os.makedirs(download_dir, exist_ok=True)  # Ensure the folder exists
 # OPUS datasets to download
 datasets = [
     ("en", "tg", "Tatoeba"),      # English-Tajik
-    ("en", "ms", "QED")     # English-Malay
+    ("en", "ms", "QED")           # English-Malay
     ("en", "ta", "GNOME")         # English-Tamil
 ]
 
