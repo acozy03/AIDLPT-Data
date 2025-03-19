@@ -1,6 +1,6 @@
 import os
 
-input_dir = os.path.abspath("data/raw_opus")  # Directory containing raw OPUS files
+input_dir = os.path.abspath("data/extracted_opus")  # Directory containing raw OPUS files
 output_dir = os.path.abspath("data/processed_opus")  # Directory to save processed files
 os.makedirs(output_dir, exist_ok=True)  # Ensure output directory exists
 
