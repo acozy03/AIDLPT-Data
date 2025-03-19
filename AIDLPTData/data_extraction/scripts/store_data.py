@@ -13,7 +13,7 @@ def store_data():
     cursor = conn.cursor()
 
     # Define the directory containing processed files
-    processed_dir = os.path.abspath("data/processed_opus")
+    processed_dir = os.path.abspath("data/rated_opus")
 
     # Step 1: Loop through the processed .txt files
     for root, dirs, files in os.walk(processed_dir):
@@ -29,14 +29,21 @@ def store_data():
                         if not line:  # Skip empty lines
                             continue
 
-                        # Check if the line contains exactly two parts separated by a tab
+                        # Check if the line contains exactly two parts separated by a tab and the ILR rating at the end
                         if "\t" in line:
-                            original_text, cleaned_text = line.split("\t", 1)
-                            # Step 3: Insert original and cleaned text into the database
-                            cursor.execute("""
-                                INSERT INTO text_data (language, original_text, cleaned_text)
-                                VALUES (%s, %s, %s)
-                            """, (lang_code, original_text, cleaned_text))
+                            parts = line.rsplit("\t", 2)  # Split into original text, translated text, and ILR rating
+                            if len(parts) == 3:
+                                original_text, translated_text, ilr_rating = parts
+                                # Clean up and extract ILR rating (strip spaces)
+                                ilr_rating = ilr_rating.strip()  # Keep it as a string, e.g., "1+", "2", etc.
+                                
+                                # Step 3: Insert original, translated text, and ILR rating into the database
+                                cursor.execute("""
+                                    INSERT INTO text_data (language, english_text, translated_text, ilr_level)
+                                    VALUES (%s, %s, %s, %s)
+                                """, (lang_code, original_text, translated_text, ilr_rating))
+                            else:
+                                print(f"⚠️ Skipping malformed line in {file_path}: {line}")
                         else:
                             print(f"⚠️ Skipping malformed line in {file_path}: {line}")
 
