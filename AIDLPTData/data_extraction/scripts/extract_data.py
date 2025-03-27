@@ -11,8 +11,9 @@ os.makedirs(download_dir, exist_ok=True)  # Ensure the folder exists
 
 # OPUS datasets to download
 datasets = [
-    ("en", "tg", "TED2020"),      # English-Tajik
-    # Add more datasets as needed
+    ("en", "tg", "TED2020"), # English-Tajik
+    ("en", "ta", "Josuha-IPC"), # English-Tamil
+    ("en", "ms", "QED"), # English-Malay
 ]
 
 def download_opus_data(src, tgt, dataset):
